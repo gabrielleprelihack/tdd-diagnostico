@@ -1,23 +1,23 @@
-from django.shortcuts import render
-from .forms import PedidoForm
+from django.shortcuts import render, redirect
+from .models import Post
 
-# Create your views here.
-def home(request):
-    
-    return render(request, 'home.html', contexto)
+def mostrar_formulario(request):
+    if request.method == 'POST':
+        post = Post()
+        post.titulo = request.POST.get('titulo')
+        post.conteudo = request.POST.get('conteudo')
+        post.autir = request.POST.get('autor')
 
-def post(request):
-    return render(request,'post.html')
+        post.save()
 
-def cadastro(request):
-    form = PedidoForm(request.POST or None)
-    if form.is_valid():
-        form.save()
-        context = {
-            'msg':"Pedido deu certo!"
-        }
-        return render(request, 'cadastro.html', context)
-    context = {
-        'formulario':form
+        return redirect('/')
+
+    return render(request, 'form.html')
+
+def mostrar_home(request):
+    posts = Post.objects.all()
+    args = {
+        'posts':posts
     }
-    return render(request, 'cadastro.html', context)
+
+    return render(request, 'index.html', args)

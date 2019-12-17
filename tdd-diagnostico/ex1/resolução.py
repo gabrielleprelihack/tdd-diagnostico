@@ -1,3 +1,8 @@
-texto = str(input('Escreva um texto ou palavra: '))
-for c in range(1, 8):
-    print(f'{texto} ' * 7)
+txt2 = input("Digite uma palavra ou um texto qualquer: ")
+i = 6
+txt = [txt2]
+print(txt)
+for x in range(0,i,1):
+    txt.append(txt2)
+for x in range(0,i+1,1):
+    print(txt)

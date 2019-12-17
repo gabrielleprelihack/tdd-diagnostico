@@ -1,12 +1,11 @@
 from django import forms
-from .models import Pedido
+from .models import Post
 
-class PedidoForm(forms.ModelForm):
-    class Meta:
-        model = Pedido
+class Posts(form.ModelForm):
+    class Postagem:
+        model = Post
         fields = [
-            'nome',
-            'email',
-            'cartao',
-            'pagamento',
-     ]
+            'titulo',
+            'conteudo',
+            'autor'
+        ]
